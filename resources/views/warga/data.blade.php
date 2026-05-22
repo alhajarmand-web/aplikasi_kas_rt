@@ -2,7 +2,10 @@
 
 @section('content')
 
-<h3 class="mb-4">Data Warga</h3>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="mb-0">Data Warga</h3>
+    <a href="/warga/create" class="btn btn-success">Tambah Warga</a>
+</div>
 
 <!-- SEARCH -->
 <form method="GET" action="/warga" class="mb-4">

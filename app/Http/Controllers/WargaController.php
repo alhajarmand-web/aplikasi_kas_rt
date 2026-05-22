@@ -19,10 +19,10 @@ class WargaController extends Controller
     return view('warga.table', compact('warga'))->render();
 }
     public function index(Request $request)
-{
-      $search = $request->search;
+    {
+        $search = $request->search;
 
-    $warga = \App\Models\Warga::when($search, function ($query, $search) {
+        $warga = \App\Models\Warga::when($search, function ($query, $search) {
             return $query->where('nama', 'like', "%{$search}%")
                          ->orWhere('alamat', 'like', "%{$search}%")
                          ->orWhere('no_hp', 'like', "%{$search}%");
@@ -30,12 +30,26 @@ class WargaController extends Controller
         ->latest()
         ->paginate(10);
 
-    return view('warga.data', compact('warga'));
+        return view('warga.data', compact('warga'));
+    }
+
+    public function create()
     {
-        Warga::create($request->all());
+        return view('warga.create');
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'nama' => 'required|string|max:255',
+            'alamat' => 'nullable|string|max:500',
+            'no_hp' => 'nullable|string|max:50',
+        ]);
+
+        Warga::create($data);
+
         return redirect('/warga')->with('success', 'Data berhasil ditambahkan');
     }
-}
 
     public function edit($id)
     {

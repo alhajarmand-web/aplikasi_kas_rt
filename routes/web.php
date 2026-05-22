@@ -68,8 +68,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     // DATA USER
     Route::get('/user', [UserController::class, 'index']);
+
+    Route::get('/user/create', [UserController::class, 'create']);
+    Route::post('/user/store', [UserController::class, 'store']);
+
     Route::get('/user/edit/{id}', [UserController::class, 'edit']);
     Route::post('/user/update/{id}', [UserController::class, 'update']);
+
     Route::get('/user/delete/{id}', [UserController::class, 'destroy']);
 
 });
