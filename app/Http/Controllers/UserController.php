@@ -9,10 +9,23 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     // ================= TAMPILKAN DATA USER =================
-    public function index()
+    public function index(Request $request)
     {
-        $user = User::latest()->get();
-        return view('user.index', compact('user'));
+        $search = $request->input('search');
+
+        $users = User::query()
+            ->when($search, function ($query, $search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('name', 'like', "%{$search}%")
+                      ->orWhere('email', 'like', "%{$search}%")
+                      ->orWhere('role', 'like', "%{$search}%");
+                });
+            })
+            ->latest()
+            ->paginate(10)
+            ->appends(['search' => $search]);
+
+        return view('user.index', compact('users', 'search'));
     }
 
     // ================= FORM TAMBAH USER =================

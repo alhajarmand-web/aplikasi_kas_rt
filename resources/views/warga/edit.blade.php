@@ -13,6 +13,16 @@
     </div>
 
     <div class="mb-3">
+        <label>Keluarga</label>
+        <select name="keluarga_id" class="form-control">
+            <option value="">-- Pilih Keluarga (opsional) --</option>
+            @foreach(\App\Models\Keluarga::all() as $k)
+                <option value="{{ $k->id }}" {{ $warga->keluarga_id == $k->id ? 'selected' : '' }}>{{ $k->nama_keluarga ?: 'Keluarga #' . $k->id }}</option>
+            @endforeach
+        </select>
+    </div>
+
+    <div class="mb-3">
         <label>Alamat</label>
         <input type="text" name="alamat" value="{{ $warga->alamat }}" class="form-control">
     </div>

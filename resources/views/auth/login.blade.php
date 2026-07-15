@@ -65,10 +65,10 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <!-- NAME -->
+            <!-- EMAIL OR NAME -->
             <div class="mb-3">
-                <label>Nama</label>
-                <input type="text" name="name" class="form-control" required autofocus>
+                <label>Email atau Nama</label>
+                <input type="text" name="email" class="form-control" required autofocus>
             </div>
 
             <!-- PASSWORD -->

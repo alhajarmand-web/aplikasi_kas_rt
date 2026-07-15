@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\KasController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PengurusController;
 use App\Models\Warga;
 use App\Models\Kas;
 
@@ -105,6 +106,14 @@ Route::middleware(['auth', 'role:admin,bendahara'])->group(function () {
     Route::post('/kas/update/{id}', [KasController::class, 'update']);
     Route::get('/kas/delete/{id}', [KasController::class, 'destroy']);
 
+    // ================= PENGURUS RT =================
+    Route::get('/pengurus', [PengurusController::class, 'index']);
+    Route::get('/pengurus/create', [PengurusController::class, 'create']);
+    Route::post('/pengurus/store', [PengurusController::class, 'store']);
+    Route::get('/pengurus/edit/{id}', [PengurusController::class, 'edit']);
+    Route::post('/pengurus/update/{id}', [PengurusController::class, 'update']);
+    Route::get('/pengurus/delete/{id}', [PengurusController::class, 'destroy']);
+
     // ================= KAS MASUK =================
     Route::get('/kas-masuk', function () {
 
@@ -139,6 +148,15 @@ Route::middleware(['auth', 'role:admin,bendahara,warga'])->group(function () {
     Route::get('/laporan', [KasController::class, 'laporan']);
 
     Route::post('/laporan/filter', [KasController::class, 'filter']);
+    
+    // ================= KELUARGA / PROFIL KELUARGA =================
+    Route::get('/keluarga', [App\Http\Controllers\KeluargaController::class, 'index']);
+    Route::get('/keluarga/create', [App\Http\Controllers\KeluargaController::class, 'create']);
+    Route::post('/keluarga/store', [App\Http\Controllers\KeluargaController::class, 'store']);
+    Route::get('/keluarga/edit/{id}', [App\Http\Controllers\KeluargaController::class, 'edit']);
+    Route::post('/keluarga/update/{id}', [App\Http\Controllers\KeluargaController::class, 'update']);
+    Route::get('/keluarga/delete/{id}', [App\Http\Controllers\KeluargaController::class, 'destroy']);
+    Route::get('/keluarga/{id}', [App\Http\Controllers\KeluargaController::class, 'show']);
 });
 
 

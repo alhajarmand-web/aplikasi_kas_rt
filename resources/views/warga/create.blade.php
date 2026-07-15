@@ -13,6 +13,16 @@
     </div>
 
     <div class="mb-3">
+        <label>Keluarga</label>
+        <select name="keluarga_id" class="form-control">
+            <option value="">-- Pilih Keluarga (opsional) --</option>
+            @foreach($keluarga as $k)
+                <option value="{{ $k->id }}" {{ isset($selectedKeluarga) && $selectedKeluarga == $k->id ? 'selected' : '' }}>{{ $k->nama_keluarga ?: 'Keluarga #' . $k->id }}</option>
+            @endforeach
+        </select>
+    </div>
+
+    <div class="mb-3">
         <label>Alamat</label>
         <input type="text" name="alamat" class="form-control">
     </div>

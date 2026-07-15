@@ -10,8 +10,7 @@
 
     <!-- ICON -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <style>
+     <style>
 
         body{
             background:#eef2ff;
@@ -22,12 +21,13 @@
         /* SIDEBAR */
         .sidebar{
             width:270px;
-            min-height:100vh;
+            height:100vh;
             background:#f8fafc;
             color:#0f172a;
             position:fixed;
             left:0;
             top:0;
+            bottom:0;
             overflow-y:auto;
             box-shadow:5px 0 25px rgba(0,0,0,0.08);
             z-index:999;
@@ -84,6 +84,32 @@
 
         .sidebar .nav-link i{
             font-size:18px;
+        }
+
+        .sidebar .nav-submenu{
+            margin:2px 16px 6px 30px;
+            padding-left:10px;
+            border-left:2px solid rgba(37,99,235,0.16);
+        }
+
+        .sidebar .nav-submenu .nav-link{
+            padding:8px 12px;
+            margin:2px 0;
+            font-size:13px;
+            gap:10px;
+            color:#475569;
+        }
+
+        .sidebar .nav-submenu .nav-link:hover{
+            background:rgba(15,23,42,0.04);
+            transform:translateX(3px);
+            color:#0f172a;
+        }
+
+        .sidebar .nav-submenu .nav-link.active{
+            background:rgba(37,99,235,0.12);
+            color:#1d4ed8;
+            box-shadow:none;
         }
 
         /* CONTENT */
@@ -181,34 +207,34 @@
 
         .user-box{
             background:white;
-            padding:12px 20px;
+            padding:10px 16px;
             border-radius:18px;
             display:flex;
             align-items:center;
-            gap:15px;
+            gap:12px;
             box-shadow:0 8px 25px rgba(0,0,0,0.08);
         }
 
         .avatar-circle{
-            width:55px;
-            height:55px;
+            width:22px;
+            height:22px;
             border-radius:50%;
             background:linear-gradient(135deg,#2563eb,#60a5fa);
             display:flex;
             align-items:center;
             justify-content:center;
             color:white;
-            font-size:22px;
+            font-size:16px;
             font-weight:bold;
         }
 
         .user-name{
-            font-size:18px;
+            font-size:13px;
             font-weight:700;
         }
 
         .user-role{
-            font-size:13px;
+            font-size:9px;
             color:#64748b;
         }
 
@@ -226,10 +252,10 @@
 
             <!-- LOGO -->
             <div class="sidebar-logo">
-                <h3 class="logo-title">🏘️ Kas RT</h3>
+                <h3 class="logo-title">🏘️ RT/RW</h3>
 
                 <div class="logo-subtitle">
-                    Sistem Keuangan RT
+                    Sistem Manajemen RT/RW
                 </div>
             </div>
 
@@ -258,8 +284,8 @@
 
             </ul>
 
-            <!-- MASTER DATA -->
-            <div class="menu-title">Master Data</div>
+            <!-- DATA KEPENDUDUKAN -->
+            <div class="menu-title">Data Kependudukan</div>
 
             <ul class="nav flex-column">
 
@@ -268,7 +294,7 @@
                     <a href="/user"
                        class="nav-link {{ request()->is('user*') ? 'active' : '' }}">
 
-                        <i class="bi bi-people-fill"></i>
+                        <i class="bi bi-person-badge-fill"></i>
                         Data User
 
                     </a>
@@ -285,12 +311,32 @@
 
                     </a>
                 </li>
+
+                <li>
+                    <a href="/pengurus"
+                       class="nav-link {{ request()->is('pengurus*') ? 'active' : '' }}">
+
+                        <i class="bi bi-people-fill"></i>
+                        Data Pengurus RT
+
+                    </a>
+                </li>
                 @endif
+
+                <li>
+                    <a href="/keluarga"
+                       class="nav-link {{ request()->is('keluarga*') ? 'active' : '' }}">
+
+                        <i class="bi bi-house-door-fill"></i>
+                        Profil Keluarga
+
+                    </a>
+                </li>
 
             </ul>
 
-            <!-- TRANSAKSI -->
-            <div class="menu-title">Transaksi</div>
+            <!-- KEUANGAN & IURAN -->
+            <div class="menu-title">Keuangan & Iuran</div>
 
             <ul class="nav flex-column">
 
@@ -298,8 +344,28 @@
                     <a href="/kas"
                        class="nav-link {{ request()->is('kas*') ? 'active' : '' }}">
 
+                        <i class="bi bi-wallet2"></i>
+                        IPL Warga
+
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/kas"
+                       class="nav-link {{ request()->is('kas*') ? 'active' : '' }}">
+
                         <i class="bi bi-cash-stack"></i>
-                        Kas
+                        Keuangan & KAS
+
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/kas"
+                       class="nav-link {{ request()->is('kas*') ? 'active' : '' }}">
+
+                        <i class="bi bi-bag-check-fill"></i>
+                        Pengeluaran Rutin
 
                     </a>
                 </li>
@@ -310,6 +376,70 @@
 
                         <i class="bi bi-bar-chart-fill"></i>
                         Laporan
+
+                    </a>
+                </li>
+
+            </ul>
+
+            <!-- AGENDA KEGIATAN -->
+            <div class="menu-title">Agenda Kegiatan</div>
+
+            <ul class="nav flex-column">
+
+                <li>
+                    <a href="/kegiatan"
+                       class="nav-link {{ request()->is('kegiatan*') ? 'active' : '' }}">
+
+                        <i class="bi bi-calendar-event-fill"></i>
+                        Kegiatan
+
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/informasi"
+                       class="nav-link {{ request()->is('informasi*') ? 'active' : '' }}">
+
+                        <i class="bi bi-info-circle-fill"></i>
+                        Informasi
+
+                    </a>
+                </li>
+
+            </ul>
+
+            <!-- LAYANAN WARGA -->
+            <div class="menu-title">Layanan Warga</div>
+
+            <ul class="nav flex-column">
+
+                <li>
+                    <a href="/surat-menyurat"
+                       class="nav-link {{ request()->is('surat-menyurat*') ? 'active' : '' }}">
+
+                        <i class="bi bi-envelope-fill"></i>
+                        Surat Menyurat
+
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/arsip-surat"
+                       class="nav-link {{ request()->is('arsip-surat*') ? 'active' : '' }}">
+
+                        <i class="bi bi-archive-fill"></i>
+                        Arsip Surat
+
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/master-surat"
+                       class="nav-link {{ request()->is('master-surat*') ? 'active' : '' }}">
+
+                        <i class="bi bi-file-earmark-text-fill"></i>
+                        Master Surat
 
                     </a>
                 </li>
